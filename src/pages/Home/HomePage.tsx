@@ -1,8 +1,15 @@
+import Navbar from "@/components/Home/Navbar";
+
 const HomePage = () => {
   return (
-    <div>
-      <h2>This is the home page inside /page file</h2>
-    </div>
+    <>
+      <Navbar />
+      <div className="h-96 w-full bg-blue-300 grid place-items-center">
+        <h2 className="text-center font-semibold text-4xl">
+          This will be the HomePage
+        </h2>
+      </div>
+    </>
   );
 };
 
