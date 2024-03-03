@@ -11,7 +11,7 @@ export const Route = createFileRoute("/_auth-layout/login")({
 function LoginComponent() {
   return (
     <div className="flex justify-center items-center h-full">
-      <Card className="flex flex-col gap-5 h-96 w-full md:w-[70%] lg:w-[90%] xl:w-[70%] mx-auto">
+      <Card className="flex flex-col gap-5 w-full md:w-[70%] lg:w-[90%] xl:w-[70%] mx-auto">
         <h3 className="text-center font-semibold text-4xl my-5">Login!</h3>
         <CardContent>
           <form className="space-y-5">
@@ -39,9 +39,15 @@ function LoginComponent() {
           </form>
         </CardContent>
         <CardFooter>
-          <div className="inline-flex items-center">
+          <div className="inline-flex items-center text-xl">
             Don&apos;t have an accout?
-            <Link to="/signup" className={buttonVariants({ variant: "link" })}>
+            <Link
+              to="/signup"
+              className={buttonVariants({
+                variant: "link",
+                className: "text-xl -ml-2.5",
+              })}
+            >
               Signup
             </Link>
           </div>

@@ -47,9 +47,9 @@ function SignupComponent() {
           </form>
         </CardContent>
         <CardFooter>
-          <div className="inline-flex items-center">
-            Already have an accout?
-            <Link to="/login" className={buttonVariants({ variant: "link" })}>
+          <div className="inline-flex items-center text-xl">
+            Already have an account?
+            <Link to="/login" className={buttonVariants({ variant: "link", className: "text-xl -ml-2.5" })}>
               Login
             </Link>
           </div>
