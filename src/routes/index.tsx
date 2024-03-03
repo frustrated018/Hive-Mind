@@ -1,3 +1,4 @@
+import About from "@/components/Home/About";
 import Hero from "@/components/Home/Hero";
 import Unique from "@/components/Home/Unique";
 import Navbar from "@/components/Nav/Navbar";
@@ -13,6 +14,7 @@ function HomeLayoutComponent() {
       <Navbar />
       <Hero />
       <Unique />
+      <About />
     </>
   );
 }
