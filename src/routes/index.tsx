@@ -1,5 +1,5 @@
-import Navbar from "@/components/Home/Navbar";
-import HomePage from "@/pages/Home/HomePage";
+import Hero from "@/components/Home/Hero";
+import Navbar from "@/components/Nav/Navbar";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
@@ -10,7 +10,7 @@ function HomeLayoutComponent() {
   return (
     <>
       <Navbar />
-      <HomePage />
+      <Hero />
     </>
   );
 }
