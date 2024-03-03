@@ -13,7 +13,10 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as AuthLayoutImport } from './routes/_auth-layout'
 import { Route as IndexImport } from './routes/index'
+import { Route as AuthLayoutSignupImport } from './routes/_auth-layout.signup'
+import { Route as AuthLayoutLoginImport } from './routes/_auth-layout.login'
 
 // Create Virtual Routes
 
@@ -26,9 +29,24 @@ const CreateLazyRoute = CreateLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/create.lazy').then((d) => d.Route))
 
+const AuthLayoutRoute = AuthLayoutImport.update({
+  id: '/_auth-layout',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
+} as any)
+
+const AuthLayoutSignupRoute = AuthLayoutSignupImport.update({
+  path: '/signup',
+  getParentRoute: () => AuthLayoutRoute,
+} as any)
+
+const AuthLayoutLoginRoute = AuthLayoutLoginImport.update({
+  path: '/login',
+  getParentRoute: () => AuthLayoutRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -39,15 +57,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/_auth-layout': {
+      preLoaderRoute: typeof AuthLayoutImport
+      parentRoute: typeof rootRoute
+    }
     '/create': {
       preLoaderRoute: typeof CreateLazyImport
       parentRoute: typeof rootRoute
+    }
+    '/_auth-layout/login': {
+      preLoaderRoute: typeof AuthLayoutLoginImport
+      parentRoute: typeof AuthLayoutImport
+    }
+    '/_auth-layout/signup': {
+      preLoaderRoute: typeof AuthLayoutSignupImport
+      parentRoute: typeof AuthLayoutImport
     }
   }
 }
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([IndexRoute, CreateLazyRoute])
+export const routeTree = rootRoute.addChildren([
+  IndexRoute,
+  AuthLayoutRoute.addChildren([AuthLayoutLoginRoute, AuthLayoutSignupRoute]),
+  CreateLazyRoute,
+])
 
 /* prettier-ignore-end */
