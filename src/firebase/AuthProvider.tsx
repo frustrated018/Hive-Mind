@@ -1,12 +1,11 @@
 import React, { createContext, ReactNode, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
-  getAuth,
   onAuthStateChanged,
   User,
   UserCredential,
 } from "firebase/auth";
-import app from "./firebase.config";
+import { auth } from "./firebase.config";
 
 // Define the type for the authentication context
 type AuthContextType = {
@@ -24,8 +23,6 @@ export const AuthContext = createContext<AuthContextType>({
   createUserWithEmailAndPass: () => Promise.reject("Not implemented"),
   loading: true,
 });
-
-const auth = getAuth(app);
 
 const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);

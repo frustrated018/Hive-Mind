@@ -2,8 +2,14 @@ import { Link } from "@tanstack/react-router";
 import MaxWidthWrapper from "../MaxWidthWrapper";
 import NavItems from "./NavItems";
 import MobileNav from "./MobileNav";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { useContext } from "react";
+import { AuthContext } from "@/firebase/AuthProvider";
 
 export default function Navbar() {
+  const { user } = useContext(AuthContext);
+  console.log(user);
+
   return (
     <>
       <header className="bg-secondary flex h-24 items-center">
@@ -24,6 +30,16 @@ export default function Navbar() {
 
             <div className="hidden lg:flex items-center gap-5">
               <NavItems />
+              <Avatar>
+                <AvatarImage
+                  src={
+                    user
+                      ? user?.photoURL ?? undefined
+                      : "https://github.com/shadcn.png"
+                  }
+                />
+                <AvatarFallback>{user?.displayName}</AvatarFallback>
+              </Avatar>
             </div>
           </section>
         </MaxWidthWrapper>

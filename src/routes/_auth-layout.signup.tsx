@@ -3,8 +3,11 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AuthContext } from "@/firebase/AuthProvider";
-import { Link, createFileRoute } from "@tanstack/react-router";
+import { ReloadIcon } from "@radix-ui/react-icons";
+import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
+import { updateProfile } from "firebase/auth";
 import { useContext } from "react";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/_auth-layout/signup")({
   component: SignupComponent,
@@ -12,6 +15,7 @@ export const Route = createFileRoute("/_auth-layout/signup")({
 
 function SignupComponent() {
   const { createUserWithEmailAndPass, loading } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,7 +31,17 @@ function SignupComponent() {
       const res = await createUserWithEmailAndPass(email, password);
 
       if (res.user) {
-        console.log("redirect to home or something");
+        //! Updating user Profile
+        await updateProfile(res.user, {
+          displayName: name,
+          photoURL: photo,
+        });
+
+        //! showing toast and redirecting
+        toast.success("Hi! Welcome to Hive Mind.");
+        navigate({
+          to: "/",
+        });
       }
     }
   };
@@ -40,7 +54,13 @@ function SignupComponent() {
           <form className="space-y-5" onSubmit={handleSignup}>
             <div>
               <Label htmlFor="name">Name:</Label>
-              <Input id="name" name="name" type="text" autoComplete="name" />
+              <Input
+                id="name"
+                name="name"
+                type="text"
+                autoComplete="name"
+                required
+              />
             </div>
             <div>
               <Label htmlFor="email">Email:</Label>
@@ -49,6 +69,7 @@ function SignupComponent() {
                 name="email"
                 type="email"
                 autoComplete="email"
+                required
               />
             </div>
             <div>
@@ -58,15 +79,23 @@ function SignupComponent() {
                 name="password"
                 type="password"
                 autoComplete="password"
+                required
               />
             </div>
             <div>
               <Label htmlFor="photo">PhotoURL (unsplash):</Label>
-              <Input id="photo" name="photo" type="url" />
+              <Input id="photo" name="photo" type="url" required />
             </div>
-            <Button className="w-full text-lg font-medium" type="submit">
-              Sign Up
-            </Button>
+            {loading ? (
+              <Button disabled>
+                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                Please wait
+              </Button>
+            ) : (
+              <Button className="w-full text-lg font-medium" type="submit">
+                Sign Up
+              </Button>
+            )}
           </form>
         </CardContent>
         <CardFooter>

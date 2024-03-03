@@ -1,11 +1,23 @@
+import { AuthContext } from "@/firebase/AuthProvider";
 import { Link } from "@tanstack/react-router";
+import { useContext } from "react";
+import { Button, buttonVariants } from "../ui/button";
+import { signOut } from "firebase/auth";
+import { auth } from "@/firebase/firebase.config";
+import { toast } from "sonner";
 
 export default function NavItems() {
+  const { user } = useContext(AuthContext);
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    toast.success("Logout Successful!");
+  };
+
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Assignments", path: "/assignments" },
     { name: "Create Assignment", path: "/create" },
-    { name: "Login", path: "/login" },
   ];
 
   return (
@@ -20,6 +32,14 @@ export default function NavItems() {
           {item.name}
         </Link>
       ))}
+
+      <>
+        {user ? (
+          <Button onClick={handleLogout}>Logout</Button>
+        ) : (
+          <Link to="/login" className={buttonVariants()}>Login</Link>
+        )}
+      </>
     </>
   );
 }
