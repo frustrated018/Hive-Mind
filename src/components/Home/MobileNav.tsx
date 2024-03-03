@@ -20,9 +20,11 @@ export default function MobileNav() {
         <SheetContent>
           <SheetHeader>
             <SheetTitle>
-              <Link to="/" className="font-bold">
-                Hive Mind
-              </Link>
+              <SheetTrigger asChild>
+                <Link to="/" className="font-bold">
+                  Hive Mind
+                </Link>
+              </SheetTrigger>
             </SheetTitle>
             <SheetDescription>
               Online space for colaborative studying.
