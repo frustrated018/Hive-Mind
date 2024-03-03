@@ -14,7 +14,7 @@ export default function NavItems() {
         <Link
           to={item.path}
           key={item.path}
-          className="font-semibold hover:underline"
+          className="hover:underline"
           activeProps={{ className: "font-bold underline" }}
         >
           {item.name}
