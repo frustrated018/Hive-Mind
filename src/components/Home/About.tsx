@@ -15,10 +15,10 @@ export default function About() {
       <section className="space-y-5">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-            About our Study Group
+            About Our Platform
           </h2>
           <p className="mx-auto max-w-[800px] text-muted-foreground md:text-xl/relaxed">
-            Connect with fellow learners in our online study group. We're here
+            Connect with fellow learners in our online study groups. We're here
             to support each other as we grow our knowledge and skills.
           </p>
         </div>
