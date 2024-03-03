@@ -1,4 +1,5 @@
 import Hero from "@/components/Home/Hero";
+import Unique from "@/components/Home/Unique";
 import Navbar from "@/components/Nav/Navbar";
 import { createFileRoute } from "@tanstack/react-router";
 
@@ -11,6 +12,7 @@ function HomeLayoutComponent() {
     <>
       <Navbar />
       <Hero />
+      <Unique />
     </>
   );
 }
