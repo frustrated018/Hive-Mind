@@ -7,10 +7,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import About from "@/components/Home/About";
 
 export const Route = createFileRoute("/")({
-  component: HomeLayoutComponent,
+  component: HomePage,
 });
 
-function HomeLayoutComponent() {
+function HomePage() {
   return (
     <>
       <Navbar />

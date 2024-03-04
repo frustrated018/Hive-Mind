@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as AssignmentsImport } from './routes/assignments'
 import { Route as IndexImport } from './routes/index'
 import { Route as AuthLayoutSignupImport } from './routes/_auth-layout.signup'
 import { Route as AuthLayoutLoginImport } from './routes/_auth-layout.login'
@@ -27,6 +28,11 @@ const AuthLayoutLazyRoute = AuthLayoutLazyImport.update({
   id: '/_auth-layout',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/_auth-layout.lazy').then((d) => d.Route))
+
+const AssignmentsRoute = AssignmentsImport.update({
+  path: '/assignments',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   path: '/',
@@ -51,6 +57,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/assignments': {
+      preLoaderRoute: typeof AssignmentsImport
+      parentRoute: typeof rootRoute
+    }
     '/_auth-layout': {
       preLoaderRoute: typeof AuthLayoutLazyImport
       parentRoute: typeof rootRoute
@@ -70,6 +80,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
+  AssignmentsRoute,
   AuthLayoutLazyRoute.addChildren([
     AuthLayoutLoginRoute,
     AuthLayoutSignupRoute,
