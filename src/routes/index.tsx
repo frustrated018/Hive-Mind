@@ -1,4 +1,4 @@
-import About from "@/components/Home/About";
+import Mission from "@/components/Home/Mission";
 import Footer from "@/components/Home/Footer";
 import Hero from "@/components/Home/Hero";
 import Unique from "@/components/Home/Unique";
@@ -15,7 +15,7 @@ function HomeLayoutComponent() {
       <Navbar />
       <Hero />
       <Unique />
-      <About />
+      <Mission />
       <Footer />
     </>
   );
