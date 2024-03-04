@@ -113,7 +113,7 @@ function SignupComponent() {
               </Button>
             ) : (
               <Button className="w-full text-lg font-medium" type="submit">
-                Sign Up
+                Signup with email
               </Button>
             )}
           </form>
@@ -124,7 +124,7 @@ function SignupComponent() {
               onClick={handleGoogleLogin}
               className="gap-3 w-full text-lg font-medium"
             >
-              <BsGoogle /> Login With Google
+              <BsGoogle /> Signup with Google
             </Button>
           </div>
         </CardContent>
