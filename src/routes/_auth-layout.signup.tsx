@@ -7,6 +7,7 @@ import { ReloadIcon } from "@radix-ui/react-icons";
 import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
 import { updateProfile } from "firebase/auth";
 import { useContext } from "react";
+import { BsGoogle } from "react-icons/bs";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_auth-layout/signup")({
@@ -14,7 +15,8 @@ export const Route = createFileRoute("/_auth-layout/signup")({
 });
 
 function SignupComponent() {
-  const { createUserWithEmailAndPass, loading } = useContext(AuthContext);
+  const { createUserWithEmailAndPass, loading, googleLogin } =
+    useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSignup = async (e: React.FormEvent) => {
@@ -37,7 +39,7 @@ function SignupComponent() {
           photoURL: photo,
         });
 
-        //! showing toast and redirecting 
+        //! showing toast and redirecting
         toast.success("Hi! Welcome to Hive Mind.");
         navigate({
           to: "/",
@@ -46,6 +48,22 @@ function SignupComponent() {
         toast.error("Sorry, we couldn't create your account.");
       }
     }
+  };
+
+  //! Login With Google
+
+  const handleGoogleLogin = async () => {
+    try {
+      await googleLogin();
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong!");
+    }
+
+    navigate({
+      to: "/",
+    });
+    toast.success("Welcome to Hive Mind!");
   };
 
   return (
@@ -99,6 +117,16 @@ function SignupComponent() {
               </Button>
             )}
           </form>
+          <div>
+            <h5 className="text-xl text-center font-semibold">or</h5>
+            <Button
+              type="button"
+              onClick={handleGoogleLogin}
+              className="gap-3 w-full text-lg font-medium"
+            >
+              <BsGoogle /> Login With Google
+            </Button>
+          </div>
         </CardContent>
         <CardFooter>
           <div className="inline-flex items-center text-xl">
