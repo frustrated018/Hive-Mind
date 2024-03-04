@@ -8,7 +8,6 @@ import { AuthContext } from "@/firebase/AuthProvider";
 
 export default function Navbar() {
   const { user } = useContext(AuthContext);
-  console.log(user);
 
   return (
     <>
@@ -34,8 +33,8 @@ export default function Navbar() {
                 <AvatarImage
                   src={
                     user
-                      ? user?.photoURL ?? undefined
-                      : "https://github.com/shadcn.png"
+                      ? user.photoURL!
+                      : "https://source.unsplash.com/a-blurry-image-of-a-rainbow-colored-background-FQ7cRFUU1y0"
                   }
                 />
                 <AvatarFallback>{user?.displayName}</AvatarFallback>

@@ -27,7 +27,7 @@ export default function Footer() {
     {
       title: "Company",
       links: [
-        { label: "About Us", href: "#" },
+        { label: "About Us", href: "#about" },
         { label: "Meet the Team", href: "#" },
         { label: "Our Mission", href: "#" },
       ],
