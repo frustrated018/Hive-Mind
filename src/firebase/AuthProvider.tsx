@@ -2,6 +2,7 @@ import React, { createContext, ReactNode, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   User,
   UserCredential,
 } from "firebase/auth";
@@ -15,6 +16,7 @@ type AuthContextType = {
     password: string
   ) => Promise<UserCredential>;
   loading: boolean;
+  logInUser: (email: string, password: string) => Promise<UserCredential>;
 };
 
 // Create the AuthContext
@@ -22,6 +24,7 @@ export const AuthContext = createContext<AuthContextType>({
   user: null,
   createUserWithEmailAndPass: () => Promise.reject("Not implemented"),
   loading: true,
+  logInUser: () => Promise.reject("Not Implimented"),
 });
 
 const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -32,6 +35,13 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const createUserWithEmailAndPass = (email: string, password: string) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  // Loggin user in with email and pass
+
+  const logInUser = (email: string, password: string) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
   };
 
   //   Monitoring USER state
@@ -49,6 +59,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     createUserWithEmailAndPass,
     user,
     loading,
+    logInUser,
   };
 
   return (

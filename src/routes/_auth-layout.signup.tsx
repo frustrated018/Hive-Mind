@@ -37,11 +37,13 @@ function SignupComponent() {
           photoURL: photo,
         });
 
-        //! showing toast and redirecting
+        //! showing toast and redirecting 
         toast.success("Hi! Welcome to Hive Mind.");
         navigate({
           to: "/",
         });
+      } else {
+        toast.error("Sorry, we couldn't create your account.");
       }
     }
   };
@@ -87,7 +89,7 @@ function SignupComponent() {
               <Input id="photo" name="photo" type="url" required />
             </div>
             {loading ? (
-              <Button disabled>
+              <Button disabled className="w-full">
                 <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
                 Please wait
               </Button>
