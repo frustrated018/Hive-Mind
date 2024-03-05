@@ -1,10 +1,12 @@
+import DetialsSkeleton from "@/Skeletons/Assignment/DetialsSkeleton";
 import Details from "@/components/Assignment/Details";
 import Footer from "@/components/Home/Footer";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Navbar from "@/components/Nav/Navbar";
+import { buttonVariants } from "@/components/ui/button";
 import { Data } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import axios from "axios";
 
 //! Creating Route
@@ -33,8 +35,19 @@ export default function AssignmentDetials() {
         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-center my-10">
           Details
         </h2>
-        {isLoading && <p>Loading...</p>}
-        {isError && <p>Couldn't find any data...</p>}
+        {isLoading && <DetialsSkeleton />}
+        {isError && (
+          <div>
+            <p className="scroll-m-20 text-3xl font-semibold tracking-tight text-center">
+              Coudn't find the assignment you were looking for.
+            </p>
+            <div className="flex justify-center items-center mt-10">
+              <Link to="/assignments" className={buttonVariants()}>
+                Go back
+              </Link>
+            </div>
+          </div>
+        )}
         {!isLoading && data && <Details data={data} />}
       </MaxWidthWrapper>
       <Footer />
