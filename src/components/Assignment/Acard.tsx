@@ -1,5 +1,12 @@
-import { CardTitle, CardDescription, Card } from "@/components/ui/card";
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "../ui/button";
 
 //! declearing type of data
 
@@ -21,27 +28,27 @@ interface Data {
 
 export default function Acard({ data }: { data: Data }) {
   return (
-    <Card key="1" className="w-full max-w-sm">
-      <div className="flex items-center space-x-4 p-4">
-        <div className="rounded-lg overflow-hidden w-12 h-12 flex-shrink-0">
-          <img
-            alt="Thumbnail"
-            src="/placeholder.svg"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          />
-        </div>
-        <div className="grid gap-1.5">
-          <CardTitle className="text-base font-medium">{data.title}</CardTitle>
-          <CardDescription className="text-sm">
-            {data.description}
-          </CardDescription>
-          <Badge>Easy</Badge>
-        </div>
+    <Card>
+      <div className="overflow-hidden rounded-t-xl max-h-44">
+        <img
+          alt="Thumbnail"
+          className="object-cover object-center w-full h-full"
+          src={data.thumbnail}
+        />
       </div>
+
+      <CardHeader className="flex flex-col items-start">
+        <CardTitle className="line-clamp-1">{data.title}</CardTitle>
+        <CardDescription className="line-clamp-2">
+          {data.description}
+        </CardDescription>
+        <Badge>Easy shit</Badge>
+      </CardHeader>
+      <CardFooter>
+        <Button variant="outline" className="font-bold">
+          View Details
+        </Button>
+      </CardFooter>
     </Card>
   );
 }
