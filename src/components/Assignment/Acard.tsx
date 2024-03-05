@@ -8,25 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "../ui/button";
 import { Link } from "@tanstack/react-router";
-
-//! declearing type of data
-
-interface Creator {
-  name: string;
-  email: string;
-}
-
-interface Data {
-  _id: string;
-  title: string;
-  description: string;
-  thumbnail: string;
-  marks: number;
-  difficulty: string;
-  status: string;
-  creator: Creator;
-  due?: Date;
-}
+import { Data } from "@/lib/types";
 
 export default function Acard({ data }: { data: Data }) {
   return (

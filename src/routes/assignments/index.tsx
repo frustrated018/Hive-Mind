@@ -2,6 +2,7 @@ import Acard from "@/components/Assignment/Acard";
 import Footer from "@/components/Home/Footer";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Navbar from "@/components/Nav/Navbar";
+import { Data } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import axios from "axios"; // Corrected import statement for axios
@@ -11,25 +12,6 @@ import axios from "axios"; // Corrected import statement for axios
 export const Route = createFileRoute("/assignments/")({
   component: AssignmentPage,
 });
-
-//! declearing type of data
-
-interface Creator {
-  name: string;
-  email: string;
-}
-
-interface Data {
-  _id: string;
-  title: string;
-  description: string;
-  thumbnail: string;
-  marks: number;
-  difficulty: string;
-  status: string;
-  creator: Creator;
-  due?: Date;
-}
 
 export default function AssignmentPage() {
   //! Fetching Data
