@@ -6,7 +6,9 @@ import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import axios from "axios"; // Corrected import statement for axios
 
-export const Route = createFileRoute("/assignments")({
+//! Creating Route
+
+export const Route = createFileRoute("/assignments/")({
   component: AssignmentPage,
 });
 

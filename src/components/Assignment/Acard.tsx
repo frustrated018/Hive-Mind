@@ -6,7 +6,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "../ui/button";
+import { buttonVariants } from "../ui/button";
+import { Link } from "@tanstack/react-router";
 
 //! declearing type of data
 
@@ -16,6 +17,7 @@ interface Creator {
 }
 
 interface Data {
+  _id: string;
   title: string;
   description: string;
   thumbnail: string;
@@ -45,9 +47,16 @@ export default function Acard({ data }: { data: Data }) {
         <Badge>Easy shit</Badge>
       </CardHeader>
       <CardFooter>
-        <Button variant="outline" className="font-bold">
+        <Link
+          to={`/assignments/$assignmentId`}
+          params={{ assignmentId: data._id }}
+          className={buttonVariants({
+            variant: "outline",
+            className: "font-bold",
+          })}
+        >
           View Details
-        </Button>
+        </Link>
       </CardFooter>
     </Card>
   );

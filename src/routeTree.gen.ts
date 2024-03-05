@@ -13,8 +13,9 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as AssignmentsImport } from './routes/assignments'
 import { Route as IndexImport } from './routes/index'
+import { Route as AssignmentsIndexImport } from './routes/assignments/index'
+import { Route as AssignmentsAssignmentIdImport } from './routes/assignments/$assignmentId'
 import { Route as AuthLayoutSignupImport } from './routes/_auth-layout.signup'
 import { Route as AuthLayoutLoginImport } from './routes/_auth-layout.login'
 
@@ -29,13 +30,18 @@ const AuthLayoutLazyRoute = AuthLayoutLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/_auth-layout.lazy').then((d) => d.Route))
 
-const AssignmentsRoute = AssignmentsImport.update({
-  path: '/assignments',
+const IndexRoute = IndexImport.update({
+  path: '/',
   getParentRoute: () => rootRoute,
 } as any)
 
-const IndexRoute = IndexImport.update({
-  path: '/',
+const AssignmentsIndexRoute = AssignmentsIndexImport.update({
+  path: '/assignments/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AssignmentsAssignmentIdRoute = AssignmentsAssignmentIdImport.update({
+  path: '/assignments/$assignmentId',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -57,10 +63,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/assignments': {
-      preLoaderRoute: typeof AssignmentsImport
-      parentRoute: typeof rootRoute
-    }
     '/_auth-layout': {
       preLoaderRoute: typeof AuthLayoutLazyImport
       parentRoute: typeof rootRoute
@@ -73,6 +75,14 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLayoutSignupImport
       parentRoute: typeof AuthLayoutLazyImport
     }
+    '/assignments/$assignmentId': {
+      preLoaderRoute: typeof AssignmentsAssignmentIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/assignments/': {
+      preLoaderRoute: typeof AssignmentsIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -80,11 +90,12 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
-  AssignmentsRoute,
   AuthLayoutLazyRoute.addChildren([
     AuthLayoutLoginRoute,
     AuthLayoutSignupRoute,
   ]),
+  AssignmentsAssignmentIdRoute,
+  AssignmentsIndexRoute,
 ])
 
 /* prettier-ignore-end */
