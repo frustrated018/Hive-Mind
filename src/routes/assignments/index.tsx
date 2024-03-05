@@ -17,6 +17,7 @@ export default function AssignmentPage() {
   //! Fetching Data
   const { data } = useQuery({
     queryKey: ["Assignments"],
+    staleTime: 5,
     queryFn: async () => {
       const { data } = await axios.get("http://localhost:5000/assignments");
 
