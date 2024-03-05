@@ -1,3 +1,4 @@
+import Acard from "@/components/Assignment/Acard";
 import Footer from "@/components/Home/Footer";
 import Navbar from "@/components/Nav/Navbar";
 import { useQuery } from "@tanstack/react-query";
@@ -16,6 +17,7 @@ interface Creator {
 }
 
 interface Data {
+  _id: string;
   title: string;
   description: string;
   thumbnail: string;
@@ -37,6 +39,10 @@ export default function AssignmentPage() {
     },
   });
 
+  // todo: edit the cards to look decent
+  // todo: Make the data that goes into Acards contain only necessary info
+  // todo: See if you can mutate the data from the backend to only send necessary info
+
   return (
     <>
       <Navbar />
@@ -44,14 +50,13 @@ export default function AssignmentPage() {
         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-center my-10">
           All assignments currently available
         </h2>
-        {data &&
-          data.map((assignment, index) => (
-            <div key={index}>
-              {/* Render your assignment data here */}
-              <p>{assignment.title}</p>
-              {/* Add other assignment properties as needed */}
-            </div>
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center">
+          {/* Added 'gap-4' for spacing between cards and 'justify-items-center' to center cards within grid */}
+          {data &&
+            data.map((assignment) => (
+              <Acard key={assignment._id} data={assignment} />
+            ))}
+        </div>
       </section>
       <Footer />
     </>
