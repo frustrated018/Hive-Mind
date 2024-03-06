@@ -54,7 +54,7 @@ export default function CreateForm() {
     };
     //! Making the Mutation
     try {
-      const res = await axios.post("http://localhost:5000/assignments/add", {
+      const res = await axios.post("https://hive-mind-server-snowy.vercel.app/assignments/add", {
         assignment: Assignment,
       });
       if (res.data.insertedId < 1) {
