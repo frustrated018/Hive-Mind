@@ -11,22 +11,33 @@ import { Link } from "@tanstack/react-router";
 import { Data } from "@/lib/types";
 
 export default function Acard({ data }: { data: Data }) {
+  const { title, description, difficulty, thumbnail } = data;
+
   return (
     <Card>
       <div className="overflow-hidden rounded-t-xl max-h-44">
         <img
           alt="Thumbnail"
           className="object-cover object-center w-full h-full"
-          src={data.thumbnail}
+          src={thumbnail}
         />
       </div>
 
       <CardHeader className="flex flex-col items-start">
-        <CardTitle className="line-clamp-1">{data.title}</CardTitle>
+        <CardTitle className="line-clamp-1">{title}</CardTitle>
         <CardDescription className="line-clamp-2">
-          {data.description}
+          {description}
         </CardDescription>
-        <Badge>Easy shit</Badge>
+        {difficulty === "easy" && <Badge variant="easy">{difficulty}</Badge>}
+        {difficulty === "medium" && (
+          <Badge variant="medium">{difficulty}</Badge>
+        )}
+        {difficulty === "hard" && <Badge variant="hard">{difficulty}</Badge>}
+        {difficulty !== "easy" &&
+          difficulty !== "medium" &&
+          difficulty !== "hard" && (
+            <Badge variant="secondary">{difficulty}</Badge>
+          )}
       </CardHeader>
       <CardFooter>
         <Link
