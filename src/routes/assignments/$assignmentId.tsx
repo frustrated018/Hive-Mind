@@ -48,7 +48,7 @@ export default function AssignmentDetials() {
             </div>
           </div>
         )}
-        {!isLoading && data && <Details data={data} />}
+        {!isLoading && !isError && data && <Details data={data} />}
       </MaxWidthWrapper>
       <Footer />
     </>
