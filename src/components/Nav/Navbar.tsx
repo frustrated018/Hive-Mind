@@ -4,7 +4,7 @@ import NavItems from "./NavItems";
 import MobileNav from "./MobileNav";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useContext } from "react";
-import { AuthContext } from "@/firebase/AuthProvider";
+import { AuthContext } from "@/Auth/AuthProvider";
 
 export default function Navbar() {
   const { user } = useContext(AuthContext);

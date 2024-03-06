@@ -1,9 +1,9 @@
-import { AuthContext } from "@/firebase/AuthProvider";
+import { AuthContext } from "@/Auth/AuthProvider";
 import { Link } from "@tanstack/react-router";
 import { useContext } from "react";
 import { Button, buttonVariants } from "../ui/button";
 import { signOut } from "firebase/auth";
-import { auth } from "@/firebase/firebase.config";
+import { auth } from "@/Auth/firebase.config";
 import { toast } from "sonner";
 
 export default function NavItems() {
