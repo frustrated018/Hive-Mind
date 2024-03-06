@@ -19,7 +19,7 @@ export default function AssignmentPage() {
     queryKey: ["Assignments"],
     staleTime: 5,
     queryFn: async () => {
-      const { data } = await axios.get("https://hive-mind-server-snowy.vercel.app/assignments");
+      const { data } = await axios.get("http://localhost:5000/assignments");
 
       return data as Data[];
     },
