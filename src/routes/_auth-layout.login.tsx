@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AuthContext } from "@/Auth/AuthProvider";
 import { ReloadIcon } from "@radix-ui/react-icons";
-import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
+import { Link, createFileRoute, useRouter } from "@tanstack/react-router";
 import { FormEvent, useContext } from "react";
 import { BsGoogle } from "react-icons/bs";
 import { toast } from "sonner";
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/_auth-layout/login")({
 });
 
 function LoginComponent() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { logInUser, loading, googleLogin } = useContext(AuthContext);
 
   //! Login With Email and Pass
@@ -26,7 +26,7 @@ function LoginComponent() {
     const res = await logInUser(email, password);
 
     if (res.user) {
-      navigate({
+      router.navigate({
         to: "/",
       });
       toast.success("Welcome Back!");
@@ -45,7 +45,7 @@ function LoginComponent() {
       toast.error("Something went wrong!");
     }
 
-    navigate({
+    router.navigate({
       to: "/",
     });
     toast.success("Welcome Back!");
