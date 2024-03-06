@@ -63,7 +63,8 @@ export default function CreateForm() {
       router.navigate({ to: "/assignments" });
       toast.success("Assignment created successfully");
     } catch (error) {
-      console.error(error);
+      toast.error("Coudn't create the assignment");
+      return;
     }
   };
 
