@@ -25,9 +25,10 @@ export default function AssignmentPage() {
     },
   });
 
-  // todo: Paginate the cards 
-  // todo: Make the data that goes into Acards contain only necessary info
-  // todo: See if you can mutate the data from the backend to only send necessary info
+  // TODO: Paginate the cards 
+  // TODO: Only show status: "Approved" products
+  // TODO: Make the data that goes into Acards contain only necessary info
+  // TODO: See if you can mutate the data from the backend to only send necessary info
 
   return (
     <>
