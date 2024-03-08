@@ -5,6 +5,7 @@ import Unique from "@/components/Home/Unique";
 import Navbar from "@/components/Nav/Navbar";
 import { createFileRoute } from "@tanstack/react-router";
 import About from "@/components/Home/About";
+import ContactUs from "@/components/Home/ContactUs";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -18,6 +19,7 @@ function HomePage() {
       <Unique />
       <Mission />
       <About />
+      <ContactUs />
       <Footer />
     </>
   );
