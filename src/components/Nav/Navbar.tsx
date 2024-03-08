@@ -5,9 +5,29 @@ import MobileNav from "./MobileNav";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useContext } from "react";
 import { AuthContext } from "@/Auth/AuthProvider";
+import {
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
+import { toast } from "sonner";
 
 export default function Navbar() {
   const { user } = useContext(AuthContext);
+
+  //! Comming soon
+
+  function comingSoon() {
+    toast.info("Coming Soon...", {
+      description:
+        "The Creator of this project was busy with Admisson tests so.... 💀",
+      duration: 6000,
+      closeButton: true,
+    });
+  }
 
   return (
     <>
@@ -29,16 +49,36 @@ export default function Navbar() {
 
             <div className="hidden lg:flex items-center gap-5">
               <NavItems />
-              <Avatar>
-                <AvatarImage
-                  src={
-                    user
-                      ? user.photoURL!
-                      : "https://source.unsplash.com/a-blurry-image-of-a-rainbow-colored-background-FQ7cRFUU1y0"
-                  }
-                />
-                <AvatarFallback>{user?.displayName}</AvatarFallback>
-              </Avatar>
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <Avatar>
+                    <AvatarImage
+                      src={
+                        user
+                          ? user.photoURL!
+                          : "https://source.unsplash.com/a-blurry-image-of-a-rainbow-colored-background-FQ7cRFUU1y0"
+                      }
+                    />
+                    <AvatarFallback>{user?.displayName}</AvatarFallback>
+                  </Avatar>
+                </DropdownMenuTrigger>
+
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>
+                    {user ? user.displayName : "No user"}
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={comingSoon}>
+                    Profile
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={comingSoon}>
+                    My Assignments
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={comingSoon}>
+                    Dashboard (for admins)
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </section>
         </MaxWidthWrapper>
