@@ -45,7 +45,7 @@ const features = [
 
 export default function Unique() {
   return (
-    <section className="w-full py-10 lg:py-20">
+    <section className="w-full py-10">
       <MaxWidthWrapper>
         <div className="text-center space-y-2">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">

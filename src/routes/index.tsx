@@ -17,8 +17,8 @@ function HomePage() {
       <Navbar />
       <Hero />
       <Unique />
-      <Mission />
       <About />
+      <Mission />
       <ContactUs />
       <Footer />
     </>

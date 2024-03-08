@@ -5,7 +5,7 @@ import { Input } from "../ui/input";
 
 export default function ContactUs() {
   return (
-    <MaxWidthWrapper>
+    <MaxWidthWrapper className="py-10">
       <section className="grid gap-4 gap-y-2 grid-cols-1 lg:grid-cols-3">
         <section>
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-center lg:text-start mb-3">

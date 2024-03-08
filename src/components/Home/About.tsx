@@ -32,7 +32,7 @@ const cardData = [
 
 export default function About() {
   return (
-    <MaxWidthWrapper className="w-full py-12">
+    <MaxWidthWrapper className="w-full py-10">
       <div id="about" className="grid grid-cols-1 lg:grid-cols-2 items-center gap-4 px-4 md:px-0 text-center lg:gap-10">
         <div className="space-y-3 md:text-left">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">

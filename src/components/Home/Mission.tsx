@@ -14,7 +14,7 @@ export default function Mission() {
   ];
 
   return (
-    <MaxWidthWrapper className="pb-10">
+    <MaxWidthWrapper className="py-10">
       <section className="space-y-5">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
