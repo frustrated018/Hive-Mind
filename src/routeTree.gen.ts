@@ -13,10 +13,13 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as DashboardImport } from './routes/dashboard'
 import { Route as CreateImport } from './routes/create'
 import { Route as IndexImport } from './routes/index'
 import { Route as DashboardIndexImport } from './routes/dashboard/index'
 import { Route as AssignmentsIndexImport } from './routes/assignments/index'
+import { Route as DashboardUsersImport } from './routes/dashboard/users'
+import { Route as DashboardOverviewImport } from './routes/dashboard/overview'
 import { Route as AssignmentsAssignmentIdImport } from './routes/assignments/$assignmentId'
 import { Route as AuthLayoutSignupImport } from './routes/_auth-layout.signup'
 import { Route as AuthLayoutLoginImport } from './routes/_auth-layout.login'
@@ -32,6 +35,11 @@ const AuthLayoutLazyRoute = AuthLayoutLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/_auth-layout.lazy').then((d) => d.Route))
 
+const DashboardRoute = DashboardImport.update({
+  path: '/dashboard',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const CreateRoute = CreateImport.update({
   path: '/create',
   getParentRoute: () => rootRoute,
@@ -43,13 +51,23 @@ const IndexRoute = IndexImport.update({
 } as any)
 
 const DashboardIndexRoute = DashboardIndexImport.update({
-  path: '/dashboard/',
-  getParentRoute: () => rootRoute,
+  path: '/',
+  getParentRoute: () => DashboardRoute,
 } as any)
 
 const AssignmentsIndexRoute = AssignmentsIndexImport.update({
   path: '/assignments/',
   getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardUsersRoute = DashboardUsersImport.update({
+  path: '/users',
+  getParentRoute: () => DashboardRoute,
+} as any)
+
+const DashboardOverviewRoute = DashboardOverviewImport.update({
+  path: '/overview',
+  getParentRoute: () => DashboardRoute,
 } as any)
 
 const AssignmentsAssignmentIdRoute = AssignmentsAssignmentIdImport.update({
@@ -79,6 +97,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreateImport
       parentRoute: typeof rootRoute
     }
+    '/dashboard': {
+      preLoaderRoute: typeof DashboardImport
+      parentRoute: typeof rootRoute
+    }
     '/_auth-layout': {
       preLoaderRoute: typeof AuthLayoutLazyImport
       parentRoute: typeof rootRoute
@@ -95,13 +117,21 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AssignmentsAssignmentIdImport
       parentRoute: typeof rootRoute
     }
+    '/dashboard/overview': {
+      preLoaderRoute: typeof DashboardOverviewImport
+      parentRoute: typeof DashboardImport
+    }
+    '/dashboard/users': {
+      preLoaderRoute: typeof DashboardUsersImport
+      parentRoute: typeof DashboardImport
+    }
     '/assignments/': {
       preLoaderRoute: typeof AssignmentsIndexImport
       parentRoute: typeof rootRoute
     }
     '/dashboard/': {
       preLoaderRoute: typeof DashboardIndexImport
-      parentRoute: typeof rootRoute
+      parentRoute: typeof DashboardImport
     }
   }
 }
@@ -111,13 +141,17 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
   CreateRoute,
+  DashboardRoute.addChildren([
+    DashboardOverviewRoute,
+    DashboardUsersRoute,
+    DashboardIndexRoute,
+  ]),
   AuthLayoutLazyRoute.addChildren([
     AuthLayoutLoginRoute,
     AuthLayoutSignupRoute,
   ]),
   AssignmentsAssignmentIdRoute,
   AssignmentsIndexRoute,
-  DashboardIndexRoute,
 ])
 
 /* prettier-ignore-end */
