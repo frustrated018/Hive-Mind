@@ -76,7 +76,7 @@ export default function Navbar() {
                     My Assignments
                   </DropdownMenuItem>
                   <DropdownMenuItem
-                    onClick={() => router.navigate({ to: "/dashboard" })}
+                    onClick={() => router.navigate({ to: "/dashboard/overview" })}
                   >
                     Dashboard (for admins)
                   </DropdownMenuItem>
