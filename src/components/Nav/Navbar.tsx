@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouter } from "@tanstack/react-router";
 import MaxWidthWrapper from "../MaxWidthWrapper";
 import NavItems from "./NavItems";
 import MobileNav from "./MobileNav";
@@ -17,6 +17,7 @@ import { toast } from "sonner";
 
 export default function Navbar() {
   const { user } = useContext(AuthContext);
+  const router = useRouter();
 
   //! Comming soon
 
@@ -74,7 +75,9 @@ export default function Navbar() {
                   <DropdownMenuItem onClick={comingSoon}>
                     My Assignments
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={comingSoon}>
+                  <DropdownMenuItem
+                    onClick={() => router.navigate({ to: "/dashboard" })}
+                  >
                     Dashboard (for admins)
                   </DropdownMenuItem>
                 </DropdownMenuContent>

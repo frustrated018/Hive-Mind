@@ -15,6 +15,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRoute } from './routes/__root'
 import { Route as CreateImport } from './routes/create'
 import { Route as IndexImport } from './routes/index'
+import { Route as DashboardIndexImport } from './routes/dashboard/index'
 import { Route as AssignmentsIndexImport } from './routes/assignments/index'
 import { Route as AssignmentsAssignmentIdImport } from './routes/assignments/$assignmentId'
 import { Route as AuthLayoutSignupImport } from './routes/_auth-layout.signup'
@@ -38,6 +39,11 @@ const CreateRoute = CreateImport.update({
 
 const IndexRoute = IndexImport.update({
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardIndexRoute = DashboardIndexImport.update({
+  path: '/dashboard/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -93,6 +99,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AssignmentsIndexImport
       parentRoute: typeof rootRoute
     }
+    '/dashboard/': {
+      preLoaderRoute: typeof DashboardIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -107,6 +117,7 @@ export const routeTree = rootRoute.addChildren([
   ]),
   AssignmentsAssignmentIdRoute,
   AssignmentsIndexRoute,
+  DashboardIndexRoute,
 ])
 
 /* prettier-ignore-end */
