@@ -14,7 +14,7 @@ export const Route = createFileRoute("/_auth-layout/login")({
 });
 
 function LoginComponent() {
-  const router = useRouter();
+  const { history } = useRouter();
   const { logInUser, loading, googleLogin } = useContext(AuthContext);
 
   //! Login With Email and Pass
@@ -26,9 +26,7 @@ function LoginComponent() {
     const res = await logInUser(email, password);
 
     if (res.user) {
-      router.navigate({
-        to: "/",
-      });
+      history.go(-1);
       toast.success("Welcome Back!");
     } else {
       toast.error("Sorry, we couldn't create your account.");
@@ -45,9 +43,7 @@ function LoginComponent() {
       toast.error("Something went wrong!");
     }
 
-    router.navigate({
-      to: "/",
-    });
+    history.go(-1);
     toast.success("Welcome Back!");
   };
 

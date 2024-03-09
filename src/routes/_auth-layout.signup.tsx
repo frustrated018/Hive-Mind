@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AuthContext } from "@/Auth/AuthProvider";
 import { ReloadIcon } from "@radix-ui/react-icons";
-import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
+import { Link, createFileRoute, useRouter } from "@tanstack/react-router";
 import { updateProfile } from "firebase/auth";
 import { useContext } from "react";
 import { BsGoogle } from "react-icons/bs";
@@ -17,7 +17,7 @@ export const Route = createFileRoute("/_auth-layout/signup")({
 function SignupComponent() {
   const { createUserWithEmailAndPass, loading, googleLogin } =
     useContext(AuthContext);
-  const navigate = useNavigate();
+  const { history } = useRouter();
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,31 +26,29 @@ function SignupComponent() {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const photo = formData.get("photo") as string;
-    console.log(name, photo);
 
     // Creating user
     if (!loading) {
       const res = await createUserWithEmailAndPass(email, password);
 
       if (res.user) {
-        //! Updating user Profile
+        //* Updating user Profile
         await updateProfile(res.user, {
           displayName: name,
           photoURL: photo,
         });
 
-        //! showing toast and redirecting
+        //* showing toast and redirecting
         toast.success("Hi! Welcome to Hive Mind.");
-        navigate({
-          to: "/",
-        });
+        //! This is not perfect cz if user types in the url and they are browsing using urls this will throw them in some weird places
+        history.go(-2);
       } else {
         toast.error("Sorry, we couldn't create your account.");
       }
     }
   };
 
-  //! Login With Google
+  //* Login With Google
 
   const handleGoogleLogin = async () => {
     try {
@@ -60,9 +58,7 @@ function SignupComponent() {
       toast.error("Something went wrong!");
     }
 
-    navigate({
-      to: "/",
-    });
+    history.go(-2);
     toast.success("Welcome to Hive Mind!");
   };
 
