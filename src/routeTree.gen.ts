@@ -20,6 +20,8 @@ import { Route as DashboardIndexImport } from './routes/dashboard/index'
 import { Route as AssignmentsIndexImport } from './routes/assignments/index'
 import { Route as DashboardUsersImport } from './routes/dashboard/users'
 import { Route as DashboardOverviewImport } from './routes/dashboard/overview'
+import { Route as DashboardEmployeesImport } from './routes/dashboard/employees'
+import { Route as DashboardAssignmentsImport } from './routes/dashboard/assignments'
 import { Route as AssignmentsAssignmentIdImport } from './routes/assignments/$assignmentId'
 import { Route as AuthLayoutSignupImport } from './routes/_auth-layout.signup'
 import { Route as AuthLayoutLoginImport } from './routes/_auth-layout.login'
@@ -70,6 +72,16 @@ const DashboardOverviewRoute = DashboardOverviewImport.update({
   getParentRoute: () => DashboardRoute,
 } as any)
 
+const DashboardEmployeesRoute = DashboardEmployeesImport.update({
+  path: '/employees',
+  getParentRoute: () => DashboardRoute,
+} as any)
+
+const DashboardAssignmentsRoute = DashboardAssignmentsImport.update({
+  path: '/assignments',
+  getParentRoute: () => DashboardRoute,
+} as any)
+
 const AssignmentsAssignmentIdRoute = AssignmentsAssignmentIdImport.update({
   path: '/assignments/$assignmentId',
   getParentRoute: () => rootRoute,
@@ -117,6 +129,14 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AssignmentsAssignmentIdImport
       parentRoute: typeof rootRoute
     }
+    '/dashboard/assignments': {
+      preLoaderRoute: typeof DashboardAssignmentsImport
+      parentRoute: typeof DashboardImport
+    }
+    '/dashboard/employees': {
+      preLoaderRoute: typeof DashboardEmployeesImport
+      parentRoute: typeof DashboardImport
+    }
     '/dashboard/overview': {
       preLoaderRoute: typeof DashboardOverviewImport
       parentRoute: typeof DashboardImport
@@ -142,6 +162,8 @@ export const routeTree = rootRoute.addChildren([
   IndexRoute,
   CreateRoute,
   DashboardRoute.addChildren([
+    DashboardAssignmentsRoute,
+    DashboardEmployeesRoute,
     DashboardOverviewRoute,
     DashboardUsersRoute,
     DashboardIndexRoute,
