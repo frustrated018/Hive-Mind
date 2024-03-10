@@ -1,12 +1,19 @@
-import { FaRegUser } from "react-icons/fa6";
-import { MdGroups, MdOutlineAssignment } from "react-icons/md";
-import { DashboardIcon } from "@radix-ui/react-icons";
+import { FaUserShield } from "react-icons/fa6";
+import {
+  MdGroups,
+  MdOutlineAssignment,
+  MdOutlineSpaceDashboard,
+} from "react-icons/md";
 import { Link } from "@tanstack/react-router";
 
 const sidenavLinks = [
-  { label: "Overview", href: "/dashboard/overview", icon: DashboardIcon },
+  {
+    label: "Overview",
+    href: "/dashboard/overview",
+    icon: MdOutlineSpaceDashboard,
+  },
   { label: "Users", href: "/dashboard/users", icon: MdGroups },
-  { label: "Employees", href: "/dashboard/employees", icon: FaRegUser },
+  { label: "Employees", href: "/dashboard/employees", icon: FaUserShield },
   {
     label: "Assignments",
     href: "/dashboard/assignments",
@@ -23,7 +30,7 @@ export default function Sidenav() {
             key={link.href}
             to={link.href}
             activeProps={{ className: "bg-primary" }}
-            className="flex gap-2 bg-background px-2 py-2.5 rounded-xl w-3/4 mx-auto justify-center items-center"
+            className="flex gap-2 bg-background px-2 py-2.5 rounded-xl w-3/4 mx-auto justify-center items-center text-sm"
           >
             <link.icon size={20} />
             {link.label}
