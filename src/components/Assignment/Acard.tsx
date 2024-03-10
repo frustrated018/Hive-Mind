@@ -8,9 +8,9 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "../ui/button";
 import { Link } from "@tanstack/react-router";
-import { Data } from "@/lib/types";
+import { assignmentData } from "@/lib/types";
 
-export default function Acard({ data }: { data: Data }) {
+export default function Acard({ data }: { data: assignmentData }) {
   const { title, description, difficulty, thumbnail } = data;
 
   return (

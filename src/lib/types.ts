@@ -3,7 +3,7 @@ interface Creator {
   email: string;
 }
 
-export interface Data {
+export interface assignmentData {
   _id: string;
   title: string;
   description: string;
