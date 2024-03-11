@@ -4,7 +4,7 @@ import Footer from "@/components/Home/Footer";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Navbar from "@/components/Nav/Navbar";
 import { buttonVariants } from "@/components/ui/button";
-import { Data } from "@/lib/types";
+import { assignmentData } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import axios from "axios";
@@ -24,7 +24,7 @@ export default function AssignmentDetials() {
         `https://hive-mind-server-snowy.vercel.app/assignments/findbyid?id=${assignmentId}`
       );
 
-      return data as Data;
+      return data as assignmentData;
     },
   });
 

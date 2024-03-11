@@ -3,7 +3,7 @@ import Footer from "@/components/Home/Footer";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Navbar from "@/components/Nav/Navbar";
 import { buttonVariants } from "@/components/ui/button";
-import { Data } from "@/lib/types";
+import { assignmentData } from "@/lib/types";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { useQuery } from "@tanstack/react-query";
 import { Link, createFileRoute } from "@tanstack/react-router";
@@ -25,7 +25,7 @@ export default function AssignmentPage() {
         "https://hive-mind-server-snowy.vercel.app/assignments"
       );
 
-      return data as Data[];
+      return data as assignmentData[];
     },
   });
 
