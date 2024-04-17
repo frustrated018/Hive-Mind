@@ -2,12 +2,6 @@
 
 Hive Mind is a collaborative study platform where students from all over the world can share the problems they are facing with their assignments and get help from their peers.
 
-## View Live Site
-
-<div align="center">
-<a href="https://hive-mind-nine.vercel.app">View Demo</a>
-<div/>
-
 ## Features
 - Seamless way to collaborate with peers on assignments
 - Create assignments in minutes
@@ -33,3 +27,10 @@ To set up the project locally, follow these steps:
 
 ## Contributing
 Contributions are welcome! Feel free to fork this repository and submit a pull request with your changes. However, please note that there are currently no specific guidelines for contributors.
+
+
+## View Live Site
+
+<div align="center">
+<a href="https://hive-mind-nine.vercel.app">View Demo</a>
+<div/>
