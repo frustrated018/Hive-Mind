@@ -31,6 +31,6 @@ Contributions are welcome! Feel free to fork this repository and submit a pull r
 
 ## View Live Site
 
-<div align="center">
+<p align="center">
 <a href="https://hive-mind-nine.vercel.app">View Demo</a>
-<div/>
+</p>
